@@ -8,6 +8,15 @@ CONFIG += c++17
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+# Needed so that Windows doesn't do `release/` and `debug/` subfolders
+# in the output directory.
+CONFIG -= \
+        copy_dir_files \
+        debug_and_release \
+        debug_and_release_target
+
+DESTDIR = $$PWD/bin
+
 SOURCES += \
     main.cpp \
     ao2charmaker.cpp
@@ -17,8 +26,3 @@ HEADERS += \
 
 FORMS += \
     ao2charmaker.ui
-
-# Default rules for deployment.
-qnx: target.path = /tmp/$${TARGET}/bin
-else: unix:!android: target.path = /opt/$${TARGET}/bin
-!isEmpty(target.path): INSTALLS += target
