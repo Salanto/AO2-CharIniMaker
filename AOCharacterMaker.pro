@@ -17,12 +17,12 @@ CONFIG -= \
 
 DESTDIR = $$PWD/bin
 
-SOURCES += \
-    main.cpp \
-    ao2charmaker.cpp
+#Grab all source files, including subfolders.
+SOURCES += $$files($$PWD/src/*.cpp, true)
 
-HEADERS += \
-    ao2charmaker.h
+#Grab all headers, including subfolders.
+HEADERS += $$files($$PWD/include/*.h, true)
+INCLUDEPATH += $$PWD/include
 
 FORMS += \
-    ao2charmaker.ui
+    ressource/ui/ao2charmaker.ui
