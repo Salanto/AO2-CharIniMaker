@@ -1,0 +1,47 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches:
+    - master
+  pull_request:
+    branches:
+    - master
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:      
+  build-windows:
+    runs-on: windows-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ilammy/msvc-dev-cmd@v1
+      
+      - name: Cache Qt
+        id: cache-qt
+        uses: actions/cache@v1  # not v2!
+        with:
+          path: ../Qt
+          key: ${{ runner.os }}-QtCache
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v2
+        with:
+          cached: ${{ steps.cache-qt.outputs.cache-hit }}
+     
+      - name: Build
+        run: |
+          cd $Env:GITHUB_WORKSPACE
+          qmake "CONFIG += qtquickcompiler" aocharmaker.pro
+          nmake
+          windeployqt bin\aocharmaker.exe --release --no-opengl-sw
+
+      - name: Upload zip
+        uses: actions/upload-artifact@v2
+        with:
+          name: AO2Charmaker-windows
+          path: bin\
