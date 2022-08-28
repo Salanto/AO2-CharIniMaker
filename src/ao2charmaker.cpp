@@ -15,6 +15,9 @@ AO2CharMaker::AO2CharMaker(QWidget *parent)
           &AO2CharMaker::on_create_folder_pressed);
   connect(ui->control_buttons, &QDialogButtonBox::accepted,
           this, &AO2CharMaker::on_save_button_pressed);
+  connect(ui->pushButton_3, &QPushButton::pressed,
+          this, &AO2CharMaker::on_add_emote_pressed);
+  ui->emote_input_groupbox->setEnabled(false);
 }
 
 AO2CharMaker::~AO2CharMaker() { delete ui; }
@@ -75,6 +78,16 @@ void AO2CharMaker::writeOptions()
     char_ini.sync();
 }
 
+void AO2CharMaker::setEmoteRowText(AnimationData f_animation_data)
+{
+    QString l_display_text = QString("%1#%2#%3#%4#%5").arg(f_animation_data.comment,
+                                                           f_animation_data.preAnim,
+                                                           f_animation_data.Anim,
+                                                           QString::number(f_animation_data.modifier),
+                                                           QString::number(f_animation_data.deskmod));
+    ui->emote_listview->addItem(l_display_text);
+}
+
 void AO2CharMaker::on_create_folder_pressed() {
   if (ui->name_lineedit->text().isEmpty()) {
     QMessageBox::question(
@@ -102,4 +115,29 @@ void AO2CharMaker::on_save_button_pressed()
       return;
     }
     writeOptions();
+}
+
+void AO2CharMaker::on_add_emote_pressed()
+{
+    ui->emote_input_groupbox->setEnabled(true);
+    AO2Emote empty;
+    m_emotions.append(empty);
+    setEmoteRowText(empty.animationData());
+    ui->emote_listview->setCurrentRow(m_emotions.size()-1);
+    ui->emote_comment_lineedit->setText(empty.animationData().comment);
+    ui->emote_preanim_lineedit->setText(empty.animationData().preAnim);
+    ui->emote_anim_lineedit->setText(empty.animationData().Anim);
+
+    int modifier_index = ui->emote_modifier_combobox->findData(empty.animationData().modifier);
+    if (modifier_index != -1)
+        ui->emote_modifier_combobox->setCurrentIndex(modifier_index);
+    else
+        ui->emote_modifier_combobox->setCurrentIndex(0);
+
+    int deskmod_index = ui->emote_modifier_combobox->findData(empty.animationData().modifier);
+    if (deskmod_index != -1)
+        ui->emote_deskmod_combobox->setCurrentIndex(modifier_index);
+    else
+        ui->emote_deskmod_combobox->setCurrentIndex(0);
+
 }

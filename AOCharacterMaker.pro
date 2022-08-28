@@ -22,7 +22,7 @@ SOURCES += $$files($$PWD/src/*.cpp, true)
 
 #Grab all headers, including subfolders.
 HEADERS += $$files($$PWD/include/*.h, true)
-INCLUDEPATH += $$PWD/include
+INCLUDEPATH += $$PWD/include/
 
 FORMS += \
-    ressource/ui/ao2charmaker.ui
+    ressources/ui/ao2charmaker.ui

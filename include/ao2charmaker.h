@@ -5,6 +5,8 @@
 #include <QMainWindow>
 #include <QVector>
 
+#include "ao2emote.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class AO2CharMaker;
@@ -48,62 +50,16 @@ class AO2CharMaker : public QMainWindow {
    */
   void writeOptions();
 
-  // Char.ini internal datastructure represented as structs
+  /**
+   * @brief Sets the ListWidget text according to the emote data provided.
+   * @param f_emote
+   */
+  void setEmoteRowText(AnimationData f_animation_data);
 
   /**
-   * @brief The AnimationData class
-   *
-   * @details The emote information is delimited using the pound (#) symbol.
-   *
+   * @brief Shares storage between widget pages to save emotes.
    */
-  struct AnimationData {
-    QString comment;
-    QString preAnim;
-    QString Anim;
-    int modifier;
-    int deskmod;
-  };
-
-  /**
-   * @brief The SoundData class
-   *
-   * @details The sound information is split into two groups in the ini.
-   * [SoundN] contains the index of the emote and the sfx filename.
-   * 1 = dubstep
-   *
-   * [SoundT] contains the index of the emote and the delay in ticks (60ms).
-   * 1 = 0
-   *
-   * As you may have noticed this structure makes no sense and is stupid.
-   */
-  struct SoundData {
-    int id = 0;
-    QString sfx = "NO-SFX";
-    int ticks = 0;
-  };
-
-  enum FrameType{
-      SFX,
-      REALIZATION,
-      SHAKE
-  };
-
-  struct FrameFXEntry {
-    QString emote;
-    FrameType type;
-    QList<int> frames;
-  };
-
-  // How tf does this work.
-  struct FrameData {
-      QList<FrameFXEntry> frameFX;
-  };
-
-  struct EmoteData {
-    AnimationData emote;
-    SoundData sound;
-    FrameData frame_sfx;
-  };
+  QVector<AO2Emote> m_emotions;
 
  private slots:
   /**
@@ -124,5 +80,10 @@ class AO2CharMaker : public QMainWindow {
    * Char.ini forces it all into a single file with improper structure. Ain't that grand?
    */
   void on_save_button_pressed();
+
+  /**
+   * @brief Adds an emote to the internal QVector of emotes.
+   */
+  void on_add_emote_pressed();
 };
 #endif  // AO2CHARMAKER_H
