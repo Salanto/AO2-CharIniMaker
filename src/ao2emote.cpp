@@ -5,7 +5,7 @@ AnimationData AO2Emote::animationData() const
     return m_animation;
 }
 
-void AO2Emote::setComment(QString f_comment)
+void AO2Emote::setComment(const QString f_comment)
 {
     m_animation.comment = f_comment;
 }

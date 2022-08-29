@@ -17,7 +17,7 @@
 class AO2Emote {
  public:
     AnimationData animationData() const;
-    void setComment(QString f_comment);
+    void setComment(const QString f_comment);
     void setPreAnim(QString f_pre_anim);
     void setAnim(QString f_anim);
     void setModifier(int f_modifier);

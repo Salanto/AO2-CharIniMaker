@@ -4,6 +4,7 @@
 #include <QCoreApplication>
 #include <QMainWindow>
 #include <QVector>
+#include <QSettings>
 
 #include "ao2emote.h"
 
@@ -46,15 +47,26 @@ class AO2CharMaker : public QMainWindow {
   void createFolder(QString f_name);
 
   /**
-   * @brief Writes the Options data in our char.ini
+   * @brief Writes the Options data in the char.ini
    */
-  void writeOptions();
+  void writeOptions(QSettings *char_ini);
+
+  /**
+   * @brief Writes the Emotions data in the char.ini
+   */
+  void writeEmotions(QSettings *char_ini);
 
   /**
    * @brief Sets the ListWidget text according to the emote data provided.
-   * @param f_emote
+   * @param f_index
    */
-  void setEmoteRowText(AnimationData f_animation_data);
+  void setEmoteRowText(int f_index, bool add_entry = false);
+
+  /**
+   * @brief Sets the emote component fields according to the emote data at the index.
+   * @param f_index
+   */
+  void setEmoteEditMenu(int f_index);
 
   /**
    * @brief Shares storage between widget pages to save emotes.
@@ -85,5 +97,16 @@ class AO2CharMaker : public QMainWindow {
    * @brief Adds an emote to the internal QVector of emotes.
    */
   void on_add_emote_pressed();
+
+
+  void on_comment_lineedit_edited(QString f_text);
+
+  void on_preanim_lineedit_edited(QString f_text);
+
+  void on_animation_lineedit_edited(QString f_text);
+
+  void on_modifier_combobox_item_selected(QString f_modifier_text);
+
+  void on_deskmod_combobox_item_selected(QString f_deskmod_text);
 };
 #endif  // AO2CHARMAKER_H
