@@ -8,6 +8,7 @@
 #include <QAbstractButton>
 
 #include "ao2emote.h"
+#include "ao2_character_data.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -68,6 +69,12 @@ class AO2CharMaker : public QMainWindow {
    * @param f_index
    */
   void setEmoteEditMenu(int f_index);
+
+  /**
+   * @brief Sets the fields in the Options tab according to the loaded char.ini
+   * @param Struct containing all Options data.
+   */
+  void setOptionsTab(CharacterOptions f_options);
 
   /**
    * @brief Shares storage between widget pages to save emotes.

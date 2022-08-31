@@ -147,9 +147,9 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
-             <width>528</width>
-             <height>301</height>
+             <y>-16</y>
+             <width>511</width>
+             <height>317</height>
             </rect>
            </property>
            <layout class="QFormLayout" name="formLayout">
@@ -252,38 +252,38 @@
               </property>
              </widget>
             </item>
-            <item row="4" column="0">
+            <item row="5" column="0">
              <widget class="QLabel" name="chat_lbl">
               <property name="text">
                <string>chat:</string>
               </property>
              </widget>
             </item>
-            <item row="4" column="1">
+            <item row="5" column="1">
              <widget class="QLineEdit" name="chat_lineedit">
               <property name="text">
                <string/>
               </property>
              </widget>
             </item>
-            <item row="5" column="0">
+            <item row="6" column="0">
              <widget class="QLabel" name="chat_font_lbl">
               <property name="text">
                <string>chat_font:</string>
               </property>
              </widget>
             </item>
-            <item row="5" column="1">
+            <item row="6" column="1">
              <widget class="QLineEdit" name="chat_front_lineedit"/>
             </item>
-            <item row="6" column="0">
+            <item row="7" column="0">
              <widget class="QLabel" name="chat_size_lbl">
               <property name="text">
                <string>chat_size:</string>
               </property>
              </widget>
             </item>
-            <item row="6" column="1">
+            <item row="7" column="1">
              <widget class="QSpinBox" name="chat_size_spinbox">
               <property name="suffix">
                <string> px</string>
@@ -293,38 +293,38 @@
               </property>
              </widget>
             </item>
-            <item row="7" column="0">
+            <item row="8" column="0">
              <widget class="QLabel" name="effects_lbl">
               <property name="text">
                <string>effects:</string>
               </property>
              </widget>
             </item>
-            <item row="7" column="1">
+            <item row="8" column="1">
              <widget class="QLineEdit" name="effects_lineedit"/>
             </item>
-            <item row="8" column="0">
+            <item row="9" column="0">
              <widget class="QLabel" name="realization_lbl">
               <property name="text">
                <string>realization:</string>
               </property>
              </widget>
             </item>
-            <item row="8" column="1">
+            <item row="9" column="1">
              <widget class="QLineEdit" name="realization_lineedit">
               <property name="text">
                <string/>
               </property>
              </widget>
             </item>
-            <item row="9" column="0">
+            <item row="10" column="0">
              <widget class="QLabel" name="scaling_lbl">
               <property name="text">
                <string>scaling</string>
               </property>
              </widget>
             </item>
-            <item row="9" column="1">
+            <item row="10" column="1">
              <widget class="QComboBox" name="scaling_combobox">
               <item>
                <property name="text">
@@ -336,6 +336,30 @@
                 <string>smooth</string>
                </property>
               </item>
+             </widget>
+            </item>
+            <item row="4" column="0">
+             <widget class="QLabel" name="category_lbl">
+              <property name="text">
+               <string>category:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="1">
+             <widget class="QLineEdit" name="category_lineedit"/>
+            </item>
+            <item row="11" column="0">
+             <widget class="QLabel" name="stretch_lbl">
+              <property name="text">
+               <string>stretch:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="11" column="1">
+             <widget class="QCheckBox" name="stretch_checkbox">
+              <property name="text">
+               <string/>
+              </property>
              </widget>
             </item>
            </layout>

@@ -7,6 +7,7 @@
 #include <QSettings>
 #include <QFileDialog>
 
+#include "ini_handler.h"
 #include "ui_ao2charmaker.h"
 
 AO2CharMaker::AO2CharMaker(QWidget* parent)
@@ -132,7 +133,30 @@ void AO2CharMaker::setEmoteEditMenu(int f_index) {
   if (deskmod_index != -1)
     ui->emote_deskmod_combobox->setCurrentIndex(modifier_index);
   else
-    ui->emote_deskmod_combobox->setCurrentIndex(0);
+      ui->emote_deskmod_combobox->setCurrentIndex(0);
+}
+
+void AO2CharMaker::setOptionsTab(CharacterOptions f_options)
+{
+    ui->name_lineedit->setText(f_options.name);
+    ui->showname_lineedit->setText(f_options.showname);
+
+    int l_side = ui->side_combobox->findText(f_options.side);
+    if (l_side != -1) ui->side_combobox->setCurrentIndex(l_side);
+    else ui->side_combobox->setCurrentIndex(0);
+
+    ui->blips_lineedit->setText(f_options.blips);
+    ui->category_lineedit->setText(f_options.category);
+    ui->chat_lineedit->setText(f_options.chat);
+    ui->chat_front_lineedit->setText(f_options.chat_font);
+    ui->chat_size_spinbox->setValue(f_options.chat_size);
+    ui->effects_lineedit->setText(f_options.effects);
+    ui->realization_lineedit->setText(f_options.realization);
+
+    int l_scaling = ui->scaling_combobox->findText(f_options.scaling);
+    if (l_scaling != -1) ui->scaling_combobox->setCurrentIndex(l_scaling);
+    else ui->scaling_combobox->setCurrentIndex(0);
+
 }
 
 void AO2CharMaker::on_create_folder_pressed() {
@@ -176,11 +200,9 @@ void AO2CharMaker::on_load_button_pressed()
     if(l_ini_fullname.isEmpty())
         return;
 
-    QSettings l_char_ini(l_ini_fullname, QSettings::IniFormat);
-    l_char_ini.setIniCodec("UTF-8");
-    if (!(l_char_ini.status() == QSettings::NoError)) {
-        return;
-    }
+    INIHandler l_handler(l_ini_fullname);
+
+    setOptionsTab(l_handler.loadOptions());
 }
 
 void AO2CharMaker::on_add_emote_pressed() {
