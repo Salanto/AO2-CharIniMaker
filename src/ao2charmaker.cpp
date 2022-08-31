@@ -5,6 +5,7 @@
 #include <QDir>
 #include <QMessageBox>
 #include <QSettings>
+#include <QFileDialog>
 
 #include "ui_ao2charmaker.h"
 
@@ -13,8 +14,9 @@ AO2CharMaker::AO2CharMaker(QWidget* parent)
   ui->setupUi(this);
   connect(ui->build_folders, &QPushButton::pressed, this,
           &AO2CharMaker::on_create_folder_pressed);
-  connect(ui->control_buttons, &QDialogButtonBox::accepted, this,
+  connect(ui->control_save_button, &QPushButton::pressed, this,
           &AO2CharMaker::on_save_button_pressed);
+  connect(ui->control_load_button, &QPushButton::pressed, this, &AO2CharMaker::on_load_button_pressed);
   connect(ui->emote_add_button, &QPushButton::pressed, this,
           &AO2CharMaker::on_add_emote_pressed);
   connect(ui->emote_listview, &QListWidget::currentRowChanged, this,
@@ -164,6 +166,21 @@ void AO2CharMaker::on_save_button_pressed() {
 
   writeOptions(&char_ini);
   writeEmotions(&char_ini);
+}
+
+void AO2CharMaker::on_load_button_pressed()
+{
+    QString l_ini_fullname = QFileDialog::getOpenFileName(this,
+        tr("Open char.ini"), root_path, tr("Character File (char.ini)"));
+
+    if(l_ini_fullname.isEmpty())
+        return;
+
+    QSettings l_char_ini(l_ini_fullname, QSettings::IniFormat);
+    l_char_ini.setIniCodec("UTF-8");
+    if (!(l_char_ini.status() == QSettings::NoError)) {
+        return;
+    }
 }
 
 void AO2CharMaker::on_add_emote_pressed() {

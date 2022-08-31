@@ -5,6 +5,7 @@
 #include <QMainWindow>
 #include <QVector>
 #include <QSettings>
+#include <QAbstractButton>
 
 #include "ao2emote.h"
 
@@ -92,6 +93,11 @@ class AO2CharMaker : public QMainWindow {
    * Char.ini forces it all into a single file with improper structure. Ain't that grand?
    */
   void on_save_button_pressed();
+
+  /**
+   * @brief on_load_button_pressed
+   */
+  void on_load_button_pressed();
 
   /**
    * @brief Adds an emote to the internal QVector of emotes.

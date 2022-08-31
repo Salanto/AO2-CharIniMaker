@@ -8,7 +8,7 @@
 /**
  * @brief The AnimationData class
  *
- * @details The emote information is delimited using the pound (#) symbol.
+ * @details The emote information is limited using the pound (#) symbol.
  *
  */
 struct AnimationData {
