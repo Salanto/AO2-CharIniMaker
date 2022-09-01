@@ -53,6 +53,7 @@ CharacterOptions INIHandler::loadOptions()
     l_options.effects = m_char_ini->value("effects", "").toString();
     l_options.realization = m_char_ini->value("realization","").toString();
     l_options.scaling = m_char_ini->value("scaling", "fast").toString();
+    l_options.stretch = m_char_ini->value("stretch", false).toBool();
     m_char_ini->endGroup();
 
     return l_options;
@@ -79,6 +80,7 @@ void INIHandler::saveOptions(const CharacterOptions f_options)
     m_char_ini->setValue("chat_size", f_options.chat_size);
     if (!f_options.effects.isEmpty()) m_char_ini->setValue("effects", f_options.effects);
     if (!f_options.realization.isEmpty()) m_char_ini->setValue("realization", f_options.realization);
+    m_char_ini->setValue("stretch", f_options.stretch);
 
     m_char_ini->endGroup();
     m_char_ini->sync();
@@ -90,13 +92,13 @@ QList<AnimationData> INIHandler::loadEmotions()
     int l_emotions_count = m_char_ini->value("number", 0).toInt();
 
     QList<AnimationData> l_animations;
-    for (int i = 1; i <= l_emotions_count; i++) {
-        QStringList l_animation_segments = m_char_ini->value(QString::number(i)).toString().split("#");
+    for (int emote_index = 1; emote_index <= l_emotions_count; emote_index++) {
+        QStringList l_animation_segments = m_char_ini->value(QString::number(emote_index)).toString().split("#");
         AnimationData l_animation;
 
         if (l_animation_segments.size() < 4) {
             qWarning() << "[INIHANDLER]:[READ_EMOTION]"
-                       << "error : emotion data at " + QString::number(i)
+                       << "error : emotion data at " + QString::number(emote_index)
                        << " is too small to load. Adding default entry.";
             l_animations.append(l_animation);
             continue;
@@ -104,13 +106,14 @@ QList<AnimationData> INIHandler::loadEmotions()
 
         if (l_animation_segments.size() == 4) {
             qWarning() << "[INIHANDLER]:[READ_EMOTION]"
-                       << "waring : missing deskmod entry at " + QString::number(i)
+                       << "waring : missing deskmod entry at " + QString::number(emote_index)
                        << ". Adding default deskmod of 0.";
             l_animation.comment = l_animation_segments.at(0);
             l_animation.preAnim = l_animation_segments.at(1);
             l_animation.Anim = l_animation_segments.at(2);
             l_animation.modifier = l_animation_segments.at(3).toInt();
             l_animation.deskmod = 0;
+            l_animations.append(l_animation);
             continue;
         }
 
@@ -119,7 +122,8 @@ QList<AnimationData> INIHandler::loadEmotions()
         l_animation.Anim = l_animation_segments.at(2);
         l_animation.modifier = l_animation_segments.at(3).toInt();
         l_animation.deskmod = l_animation_segments.at(4).toInt();
-        }
+        l_animations.append(l_animation);
+    }
 
     return l_animations;
 }

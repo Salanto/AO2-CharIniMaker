@@ -4,6 +4,8 @@
 #include "ini_handler.h"
 
 #include <QFileDialog>
+#include <QMessageBox>
+#include <QDebug>
 
 void AO2CharMaker::on_load_button_pressed()
 {
@@ -16,6 +18,45 @@ void AO2CharMaker::on_load_button_pressed()
     INIHandler l_handler(l_ini_fullname);
 
     setOptionsTab(l_handler.loadOptions());
+    setEmotionsTab(l_handler.loadEmotions());
+}
+
+void AO2CharMaker::on_save_button_pressed() {
+  if (ui->name_lineedit->text().isEmpty()) {
+    QMessageBox::question(
+        this, "Please name the character.",
+        "Please enter a character name before saving the character.",
+        QMessageBox::StandardButton::Ok);
+    return;
+  }
+
+  INIHandler l_handler(root_path + "/" + ui->name_lineedit->text() + "/char.ini");
+
+  CharacterOptions l_options;
+  l_options.name = ui->name_lineedit->text();
+  l_options.showname = ui->showname_lineedit->text();
+  l_options.side = ui->side_combobox->currentText();
+  l_options.blips = ui->blips_lineedit->text();
+  l_options.category = ui->category_lineedit->text();
+  l_options.chat = ui->chat_lineedit->text();
+  l_options.chat_font = ui->chat_front_lineedit->text();
+  l_options.chat_size = ui->chat_size_spinbox->value();
+  l_options.effects = ui->effects_lineedit->text();
+  l_options.realization = ui->realization_lineedit->text();
+  l_options.scaling = ui->scaling_combobox->currentText();
+  l_options.stretch = ui->stretch_checkbox->isChecked();
+
+  l_handler.saveOptions(l_options);
+
+  Emotions l_emotions;
+  l_emotions.number = m_emotions.size();
+  QList<AnimationData> l_emote_entries;
+  for (const AO2Emote &l_emote : qAsConst(m_emotions)) {
+      l_emote_entries.append(l_emote.animationData());
+  }
+  l_emotions.emotions = l_emote_entries;
+
+  l_handler.saveEmotions(l_emotions);
 }
 
 void AO2CharMaker::on_add_emote_pressed() {
@@ -74,20 +115,4 @@ void AO2CharMaker::on_create_folder_pressed() {
   if (ui->create_anim_folder->isChecked()) createFolder("anim");
   if (ui->create_custom_folder->isChecked()) createFolder("custom");
   if (ui->create_shouts_folder->isChecked()) createFolder("shouts");
-}
-
-void AO2CharMaker::on_save_button_pressed() {
-  if (ui->name_lineedit->text().isEmpty()) {
-    QMessageBox::question(
-        this, "Please name the character.",
-        "Please enter a character name before saving the character.",
-        QMessageBox::StandardButton::Ok);
-    return;
-  }
-  QSettings char_ini = QSettings(resolvePath("char.ini"), QSettings::IniFormat);
-  char_ini.setIniCodec("UTF-8");
-  char_ini.clear();
-
-  writeOptions(&char_ini);
-  writeEmotions(&char_ini);
 }

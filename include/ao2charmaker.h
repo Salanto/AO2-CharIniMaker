@@ -22,8 +22,7 @@ class AO2CharMaker : public QMainWindow {
  public:
   AO2CharMaker(QWidget *parent = nullptr);
   ~AO2CharMaker();
-
- private:
+private:
   Ui::AO2CharMaker *ui;
 
   /**
@@ -49,16 +48,6 @@ class AO2CharMaker : public QMainWindow {
   void createFolder(QString f_name);
 
   /**
-   * @brief Writes the Options data in the char.ini
-   */
-  void writeOptions(QSettings *char_ini);
-
-  /**
-   * @brief Writes the Emotions data in the char.ini
-   */
-  void writeEmotions(QSettings *char_ini);
-
-  /**
    * @brief Sets the ListWidget text according to the emote data provided.
    * @param f_index
    */
@@ -75,6 +64,8 @@ class AO2CharMaker : public QMainWindow {
    * @param Struct containing all Options data.
    */
   void setOptionsTab(CharacterOptions f_options);
+
+  void setEmotionsTab(QList<AnimationData> f_emotions);
 
   /**
    * @brief Shares storage between widget pages to save emotes.

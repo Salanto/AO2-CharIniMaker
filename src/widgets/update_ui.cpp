@@ -58,4 +58,33 @@ void AO2CharMaker::setOptionsTab(CharacterOptions f_options)
     int l_scaling = ui->scaling_combobox->findText(f_options.scaling);
     if (l_scaling != -1) ui->scaling_combobox->setCurrentIndex(l_scaling);
     else ui->scaling_combobox->setCurrentIndex(0);
+
+    ui->stretch_checkbox->setChecked(f_options.stretch);
+}
+
+void AO2CharMaker::setEmotionsTab(QList<AnimationData> f_emotions)
+{
+    // We are loading in a foreign char.ini. The widget items have become obsolete.
+    // The signal firing needs to be disabled as clear would set the current row to -1
+    ui->emote_listview->blockSignals(true);
+    ui->emote_listview->clear();
+    m_emotions.clear();
+
+    int l_row = 0;
+    for (const AnimationData &l_animation : f_emotions) {
+        AO2Emote l_emote;
+        l_emote.setAnimationData(l_animation);
+        m_emotions.append(l_emote);
+        setEmoteRowText(l_row, true);
+        l_row++;
+    }
+
+    ui->emote_listview->blockSignals(false);
+    if (ui->emote_listview->count() > 0) {
+        ui->emote_listview->setCurrentRow(0);
+        ui->emote_input_groupbox->setEnabled(true);
+    }
+    else {
+        ui->emote_input_groupbox->setEnabled(false);
+    }
 }

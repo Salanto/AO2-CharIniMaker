@@ -55,6 +55,7 @@ struct CharacterOptions {
     QString effects;
     QString realization;
     QString scaling;
+    bool stretch;
 };
 
 /**
