@@ -1,4 +1,5 @@
 #include "ini_handler.h"
+#include "ao2_character_data.h"
 
 #include <QDebug>
 
@@ -127,4 +128,14 @@ void INIHandler::saveEmotions(const Emotions f_emotions)
 {
     m_char_ini->beginGroup("Emotions");
     m_char_ini->setValue("number", f_emotions.number);
+
+    int l_emote_index = 1;
+    for (AnimationData l_animation_data: f_emotions.emotions) {
+      QString l_emote_entry = QString("%1#%2#%3#%4#%5").arg(l_animation_data.comment, l_animation_data.preAnim,
+                                                            l_animation_data.Anim,
+                                                            QString::number(l_animation_data.modifier),
+                                                            QString::number(l_animation_data.deskmod));
+      m_char_ini->setValue(QString::number(l_emote_index), l_emote_entry);
+      l_emote_index++;
+    }
 }
