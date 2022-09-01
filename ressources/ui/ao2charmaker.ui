@@ -148,8 +148,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>528</width>
-             <height>303</height>
+             <width>511</width>
+             <height>317</height>
             </rect>
            </property>
            <layout class="QFormLayout" name="formLayout">
@@ -252,38 +252,38 @@
               </property>
              </widget>
             </item>
-            <item row="4" column="0">
+            <item row="5" column="0">
              <widget class="QLabel" name="chat_lbl">
               <property name="text">
                <string>chat:</string>
               </property>
              </widget>
             </item>
-            <item row="4" column="1">
+            <item row="5" column="1">
              <widget class="QLineEdit" name="chat_lineedit">
               <property name="text">
                <string/>
               </property>
              </widget>
             </item>
-            <item row="5" column="0">
+            <item row="6" column="0">
              <widget class="QLabel" name="chat_font_lbl">
               <property name="text">
                <string>chat_font:</string>
               </property>
              </widget>
             </item>
-            <item row="5" column="1">
+            <item row="6" column="1">
              <widget class="QLineEdit" name="chat_front_lineedit"/>
             </item>
-            <item row="6" column="0">
+            <item row="7" column="0">
              <widget class="QLabel" name="chat_size_lbl">
               <property name="text">
                <string>chat_size:</string>
               </property>
              </widget>
             </item>
-            <item row="6" column="1">
+            <item row="7" column="1">
              <widget class="QSpinBox" name="chat_size_spinbox">
               <property name="suffix">
                <string> px</string>
@@ -293,38 +293,38 @@
               </property>
              </widget>
             </item>
-            <item row="7" column="0">
+            <item row="8" column="0">
              <widget class="QLabel" name="effects_lbl">
               <property name="text">
                <string>effects:</string>
               </property>
              </widget>
             </item>
-            <item row="7" column="1">
+            <item row="8" column="1">
              <widget class="QLineEdit" name="effects_lineedit"/>
             </item>
-            <item row="8" column="0">
+            <item row="9" column="0">
              <widget class="QLabel" name="realization_lbl">
               <property name="text">
                <string>realization:</string>
               </property>
              </widget>
             </item>
-            <item row="8" column="1">
+            <item row="9" column="1">
              <widget class="QLineEdit" name="realization_lineedit">
               <property name="text">
                <string/>
               </property>
              </widget>
             </item>
-            <item row="9" column="0">
+            <item row="10" column="0">
              <widget class="QLabel" name="scaling_lbl">
               <property name="text">
                <string>scaling</string>
               </property>
              </widget>
             </item>
-            <item row="9" column="1">
+            <item row="10" column="1">
              <widget class="QComboBox" name="scaling_combobox">
               <item>
                <property name="text">
@@ -338,9 +338,84 @@
               </item>
              </widget>
             </item>
+            <item row="4" column="0">
+             <widget class="QLabel" name="category_lbl">
+              <property name="text">
+               <string>category:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="1">
+             <widget class="QLineEdit" name="category_lineedit"/>
+            </item>
+            <item row="11" column="0">
+             <widget class="QLabel" name="stretch_lbl">
+              <property name="text">
+               <string>stretch:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="11" column="1">
+             <widget class="QCheckBox" name="stretch_checkbox">
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
            </layout>
           </widget>
          </widget>
+        </item>
+        <item>
+         <layout class="QGridLayout" name="gridLayout_5">
+          <item row="0" column="3">
+           <widget class="QPushButton" name="control_exit_button">
+            <property name="text">
+             <string>Exit</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QPushButton" name="control_save_button">
+            <property name="text">
+             <string>Save char.ini</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QPushButton" name="control_load_button">
+            <property name="text">
+             <string>Load char.ini</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <spacer name="horizontalSpacer_4">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="0" column="4">
+           <spacer name="horizontalSpacer_5">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
         </item>
        </layout>
       </widget>
@@ -480,12 +555,17 @@
               <widget class="QComboBox" name="emote_deskmod_combobox">
                <item>
                 <property name="text">
-                 <string>1</string>
+                 <string>-1</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>-1</string>
+                 <string>0</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>1</string>
                 </property>
                </item>
                <item>
@@ -523,38 +603,43 @@
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_10">
         <item>
-         <widget class="QListView" name="listView_3"/>
+         <widget class="QListWidget" name="sound_listview"/>
         </item>
         <item>
-         <layout class="QFormLayout" name="formLayout_4">
-          <item row="0" column="0">
-           <widget class="QLabel" name="sound_name_lbl">
-            <property name="text">
-             <string>SFX Name:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QLineEdit" name="sound_sfx_lineedit"/>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="sound_ticks_lbl">
-            <property name="text">
-             <string>Ticks before play:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QSpinBox" name="sound_tick_spinbox">
-            <property name="suffix">
-             <string> ticks</string>
-            </property>
-            <property name="maximum">
-             <number>9999</number>
-            </property>
-           </widget>
-          </item>
-         </layout>
+         <widget class="QGroupBox" name="sound_input_groupbox">
+          <property name="title">
+           <string/>
+          </property>
+          <layout class="QFormLayout" name="formLayout_5">
+           <item row="0" column="0">
+            <widget class="QLabel" name="sound_name_lbl">
+             <property name="text">
+              <string>SFX Name:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="sound_sfx_lineedit"/>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="sound_ticks_lbl">
+             <property name="text">
+              <string>Ticks before play:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QSpinBox" name="sound_tick_spinbox">
+             <property name="suffix">
+              <string> ticks</string>
+             </property>
+             <property name="maximum">
+              <number>9999</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -738,16 +823,6 @@ cancer inducing</string>
         </item>
        </layout>
       </widget>
-     </widget>
-    </item>
-    <item>
-     <widget class="QDialogButtonBox" name="control_buttons">
-      <property name="standardButtons">
-       <set>QDialogButtonBox::Cancel|QDialogButtonBox::Open|QDialogButtonBox::Save</set>
-      </property>
-      <property name="centerButtons">
-       <bool>true</bool>
-      </property>
      </widget>
     </item>
    </layout>
