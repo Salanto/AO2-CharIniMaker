@@ -82,3 +82,49 @@ void INIHandler::saveOptions(const CharacterOptions f_options)
     m_char_ini->endGroup();
     m_char_ini->sync();
 }
+
+QList<AnimationData> INIHandler::loadEmotions()
+{
+    m_char_ini->beginGroup("Emotions");
+    int l_emotions_count = m_char_ini->value("number", 0).toInt();
+
+    QList<AnimationData> l_animations;
+    for (int i = 1; i <= l_emotions_count; i++) {
+        QStringList l_animation_segments = m_char_ini->value(QString::number(i)).toString().split("#");
+        AnimationData l_animation;
+
+        if (l_animation_segments.size() < 4) {
+            qWarning() << "[INIHANDLER]:[READ_EMOTION]"
+                       << "error : emotion data at " + QString::number(i)
+                       << " is too small to load. Adding default entry.";
+            l_animations.append(l_animation);
+            continue;
+        }
+
+        if (l_animation_segments.size() == 4) {
+            qWarning() << "[INIHANDLER]:[READ_EMOTION]"
+                       << "waring : missing deskmod entry at " + QString::number(i)
+                       << ". Adding default deskmod of 0.";
+            l_animation.comment = l_animation_segments.at(0);
+            l_animation.preAnim = l_animation_segments.at(1);
+            l_animation.Anim = l_animation_segments.at(2);
+            l_animation.modifier = l_animation_segments.at(3).toInt();
+            l_animation.deskmod = 0;
+            continue;
+        }
+
+        l_animation.comment = l_animation_segments.at(0);
+        l_animation.preAnim = l_animation_segments.at(1);
+        l_animation.Anim = l_animation_segments.at(2);
+        l_animation.modifier = l_animation_segments.at(3).toInt();
+        l_animation.deskmod = l_animation_segments.at(4).toInt();
+        }
+
+    return l_animations;
+}
+
+void INIHandler::saveEmotions(const Emotions f_emotions)
+{
+    m_char_ini->beginGroup("Emotions");
+    m_char_ini->setValue("number", f_emotions.number);
+}

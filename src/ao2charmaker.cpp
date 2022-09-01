@@ -1,4 +1,5 @@
 #include "ao2charmaker.h"
+#include "ui_ao2charmaker.h"
 
 #include <QDebug>
 #include <QDialogButtonBox>
@@ -8,7 +9,6 @@
 #include <QFileDialog>
 
 #include "ini_handler.h"
-#include "ui_ao2charmaker.h"
 
 AO2CharMaker::AO2CharMaker(QWidget* parent)
     : QMainWindow(parent), ui(new Ui::AO2CharMaker) {

@@ -71,6 +71,11 @@ struct AnimationData {
   int deskmod = 1;
 };
 
+struct Emotions {
+    int number;
+    QList<AnimationData> emotions;
+};
+
 /**
  * @brief The SoundData struct.
  *
