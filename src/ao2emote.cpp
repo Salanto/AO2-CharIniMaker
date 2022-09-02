@@ -34,3 +34,8 @@ void AO2Emote::setDeskmod(int f_deskmod)
 {
     m_animation.deskmod = f_deskmod;
 }
+
+SoundData AO2Emote::soundData() const
+{
+    return m_sound;
+}

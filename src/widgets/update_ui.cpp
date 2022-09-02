@@ -35,7 +35,7 @@ void AO2CharMaker::setEmoteEditMenu(int f_index) {
   if (deskmod_index != -1)
     ui->emote_deskmod_combobox->setCurrentIndex(modifier_index);
   else
-      ui->emote_deskmod_combobox->setCurrentIndex(0);
+      ui->emote_deskmod_combobox->setCurrentIndex(1);
 }
 
 void AO2CharMaker::setOptionsTab(CharacterOptions f_options)

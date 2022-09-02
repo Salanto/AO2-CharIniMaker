@@ -24,6 +24,8 @@ class AO2Emote {
     void setModifier(int f_modifier);
     void setDeskmod(int f_deskmod);
 
+    SoundData soundData() const;
+
  private:
   /**
    * @brief Contains the files used to play this emote.
@@ -32,6 +34,14 @@ class AO2Emote {
    * This is used to identify the emote in the UI by name. Many people just use the index though.
    */
   AnimationData m_animation;
+
+  /**
+   * @brief Contains the SFX information played when the pre-animation is used.
+   *
+   * @details Sounds are by default played when the preanimation is selected.
+   * Of course it is not as easy as that because MUH FEATURES. Inconsistent behaviour is totally necessary ;).
+   */
+  SoundData m_sound;
 };
 
 #endif  // AO2_EMOTE_H

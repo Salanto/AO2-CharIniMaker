@@ -21,7 +21,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -147,7 +147,7 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-16</y>
+             <y>0</y>
              <width>511</width>
              <height>317</height>
             </rect>
@@ -555,12 +555,17 @@
               <widget class="QComboBox" name="emote_deskmod_combobox">
                <item>
                 <property name="text">
-                 <string>1</string>
+                 <string>-1</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>-1</string>
+                 <string>0</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>1</string>
                 </property>
                </item>
                <item>
