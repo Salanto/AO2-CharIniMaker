@@ -71,6 +71,7 @@ void AO2CharMaker::on_save_button_pressed() {
 void AO2CharMaker::on_add_emote_pressed() {
   ui->emote_input_groupbox->setEnabled(true);
   ui->sound_input_groupbox->setEnabled(true);
+  ui->emote_remove_button->setEnabled(true);
   AO2Emote l_new_emotion;
   m_emotions.append(l_new_emotion);
 
@@ -80,6 +81,28 @@ void AO2CharMaker::on_add_emote_pressed() {
   ui->emote_listview->setCurrentRow(l_emote_index);
   setEmoteEditMenu(l_emote_index);
   setSoundEditMenu(l_emote_index);
+}
+
+void AO2CharMaker::on_delete_emote_pressed()
+{
+  int l_removed_index = ui->emote_listview->currentRow();
+  if (l_removed_index > -1) {
+    m_emotions.remove(l_removed_index);
+  }
+
+  QList<AnimationData> l_emotions;
+  QList<SoundData> l_sounds;
+  for (const AO2Emote &l_emote : qAsConst(m_emotions)) {
+      l_emotions.append(l_emote.animationData());
+      l_sounds.append(l_emote.soundData());
+  }
+  setEmotionsTab(l_emotions);
+  setSoundTab(l_sounds);
+
+  if (ui->emote_listview->count() < 1) {
+      ui->emote_input_groupbox->setEnabled(false);
+      ui->sound_input_groupbox->setEnabled(false);
+  }
 }
 
 void AO2CharMaker::on_comment_lineedit_edited(QString f_text) {

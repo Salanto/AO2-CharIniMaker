@@ -108,6 +108,11 @@ private:
    */
   void on_add_emote_pressed();
 
+  /**
+   * @brief Removes an emote from the internal QVector of emotes.
+   */
+  void on_delete_emote_pressed();
+
 
   void on_comment_lineedit_edited(QString f_text);
 

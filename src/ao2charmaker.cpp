@@ -35,7 +35,10 @@ AO2CharMaker::AO2CharMaker(QWidget* parent)
           &AO2CharMaker::on_deskmod_combobox_item_selected);
   connect(ui->emote_modifier_combobox, &QComboBox::currentTextChanged, this,
           &AO2CharMaker::on_modifier_combobox_item_selected);
+  connect(ui->emote_remove_button, &QPushButton::pressed, this,
+          &AO2CharMaker::on_delete_emote_pressed);
   ui->emote_input_groupbox->setEnabled(false);
+  ui->emote_remove_button->setEnabled(false);
 
   // Sound Tab Connections
   connect(ui->sound_listview, &QListWidget::currentRowChanged, this,
