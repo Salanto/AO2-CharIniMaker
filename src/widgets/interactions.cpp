@@ -102,6 +102,7 @@ void AO2CharMaker::on_delete_emote_pressed()
   if (ui->emote_listview->count() < 1) {
       ui->emote_input_groupbox->setEnabled(false);
       ui->sound_input_groupbox->setEnabled(false);
+      ui->emote_remove_button->setEnabled(false);
   }
 }
 
