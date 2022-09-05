@@ -37,6 +37,10 @@ AO2CharMaker::AO2CharMaker(QWidget* parent)
           &AO2CharMaker::on_modifier_combobox_item_selected);
   connect(ui->emote_remove_button, &QPushButton::pressed, this,
           &AO2CharMaker::on_delete_emote_pressed);
+  connect(ui->emote_up_button, &QPushButton::pressed, this,
+          &AO2CharMaker::on_emote_up_pressed);
+  connect(ui->emote_down_button, &QPushButton::pressed, this,
+          &AO2CharMaker::on_emote_down_pressed);
   connect(ui->control_exit_button, &QPushButton::pressed, this,  [=] {
       this->close();
   });

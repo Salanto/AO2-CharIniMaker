@@ -78,6 +78,8 @@ private:
    */
   QVector<AO2Emote> m_emotions;
 
+  void redrawUI();
+
  private slots:
   /**
    * @brief We want to create a folder structure.
@@ -112,6 +114,10 @@ private:
    * @brief Removes an emote from the internal QVector of emotes.
    */
   void on_delete_emote_pressed();
+
+  void on_emote_up_pressed();
+
+  void on_emote_down_pressed();
 
 
   void on_comment_lineedit_edited(QString f_text);

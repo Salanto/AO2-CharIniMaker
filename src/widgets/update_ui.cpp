@@ -49,6 +49,28 @@ void AO2CharMaker::setEmoteEditMenu(int f_index) {
     ui->emote_deskmod_combobox->setCurrentIndex(modifier_index);
   else
       ui->emote_deskmod_combobox->setCurrentIndex(1);
+
+  if (f_index == 0) {
+    //We need to disable up for sure.
+    ui->emote_up_button->setEnabled(false);
+    if (f_index != m_emotions.size() -1) {
+        //We have an entry after this one. Enable down button.
+        ui->emote_down_button->setEnabled(true);
+    }
+  }
+
+  if (f_index != 0 && f_index != m_emotions.size() -1) {
+      //Entry is not at the end or beginning. Enable both.
+      ui->emote_down_button->setEnabled(true);
+      ui->emote_up_button->setEnabled(true);
+  }
+
+  if (f_index == m_emotions.size() -1 && f_index != 0) {
+      //We are at the end of the list and NOT the first entry.
+    ui->emote_up_button->setEnabled(true);
+    ui->emote_down_button->setEnabled(false);
+  }
+
 }
 
 void AO2CharMaker::setSoundEditMenu(int f_index)
@@ -131,4 +153,16 @@ void AO2CharMaker::setSoundTab(QList<SoundData> f_sounds)
     else {
         ui->sound_input_groupbox->setEnabled(false);
     }
+}
+
+void AO2CharMaker::redrawUI()
+{
+    QList<AnimationData> l_emotions;
+    QList<SoundData> l_sounds;
+    for (const AO2Emote &l_emote : qAsConst(m_emotions)) {
+        l_emotions.append(l_emote.animationData());
+        l_sounds.append(l_emote.soundData());
+    }
+    setEmotionsTab(l_emotions);
+    setSoundTab(l_sounds);
 }

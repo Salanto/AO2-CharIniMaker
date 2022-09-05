@@ -90,20 +90,37 @@ void AO2CharMaker::on_delete_emote_pressed()
     m_emotions.remove(l_removed_index);
   }
 
-  QList<AnimationData> l_emotions;
-  QList<SoundData> l_sounds;
-  for (const AO2Emote &l_emote : qAsConst(m_emotions)) {
-      l_emotions.append(l_emote.animationData());
-      l_sounds.append(l_emote.soundData());
-  }
-  setEmotionsTab(l_emotions);
-  setSoundTab(l_sounds);
+  redrawUI();
+  if (ui->emote_listview->count() > 0)
+      ui->emote_listview->setCurrentRow(l_removed_index -1);
 
   if (ui->emote_listview->count() < 1) {
       ui->emote_input_groupbox->setEnabled(false);
       ui->sound_input_groupbox->setEnabled(false);
       ui->emote_remove_button->setEnabled(false);
+      ui->emote_up_button->setEnabled(false);
+      ui->emote_down_button->setEnabled(false);
   }
+}
+
+void AO2CharMaker::on_emote_up_pressed()
+{
+    int l_current = ui->emote_listview->currentRow();
+    int l_target_row = l_current - 1;
+
+    m_emotions.swapItemsAt(l_current, l_target_row);
+    redrawUI();
+    ui->emote_listview->setCurrentRow(l_target_row);
+}
+
+void AO2CharMaker::on_emote_down_pressed()
+{
+    int l_current = ui->emote_listview->currentRow();
+    int l_target_row = l_current + 1;
+
+    m_emotions.swapItemsAt(l_current, l_target_row);
+    redrawUI();
+    ui->emote_listview->setCurrentRow(l_target_row);
 }
 
 void AO2CharMaker::on_comment_lineedit_edited(QString f_text) {
