@@ -21,6 +21,10 @@ void AO2CharMaker::on_load_button_pressed()
     setEmotionsTab(l_handler->loadEmotions());
     setSoundTab(l_handler->loadSounds());
 
+    if (m_emotions.size() > 0) {
+        ui->emote_remove_button->setEnabled(true);
+    }
+
     delete l_handler;
 }
 
