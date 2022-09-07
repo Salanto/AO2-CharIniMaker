@@ -95,8 +95,11 @@ void AO2CharMaker::on_delete_emote_pressed()
   }
 
   redrawUI();
-  if (ui->emote_listview->count() > 0)
+  if (ui->emote_listview->count() > 0 && l_removed_index != 0)
       ui->emote_listview->setCurrentRow(l_removed_index -1);
+  else {
+      ui->emote_listview->setCurrentRow(l_removed_index);
+  }
 
   if (ui->emote_listview->count() < 1) {
       ui->emote_input_groupbox->setEnabled(false);
