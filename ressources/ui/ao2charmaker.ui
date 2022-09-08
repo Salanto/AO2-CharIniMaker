@@ -643,24 +643,131 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="framesfx">
+      <widget class="QWidget" name="framefx">
        <attribute name="title">
-        <string>FrameSFX</string>
+        <string>FrameFX</string>
        </attribute>
-       <widget class="QLabel" name="unimplemented_lbl">
-        <property name="geometry">
-         <rect>
-          <x>80</x>
-          <y>60</y>
-          <width>281</width>
-          <height>151</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>No clue how this feature works, but its syntax is kinda
-cancer inducing</string>
-        </property>
-       </widget>
+       <layout class="QGridLayout" name="gridLayout_6">
+        <item row="5" column="0">
+         <layout class="QHBoxLayout" name="framefx_radio_horizontal_layout">
+          <item>
+           <widget class="QRadioButton" name="framefx_radio_sfx_button">
+            <property name="text">
+             <string>FrameSFX</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="framefx_radio_screenshake_button">
+            <property name="text">
+             <string>FrameScreenshake</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="framefx_radio_realization_button">
+            <property name="text">
+             <string>FrameRealization</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="9" column="0">
+         <layout class="QVBoxLayout" name="framefx_config_layout">
+          <item>
+           <widget class="QGroupBox" name="framefx_config_combobox">
+            <property name="title">
+             <string>Configuration</string>
+            </property>
+            <layout class="QFormLayout" name="formLayout_4">
+             <item row="1" column="0">
+              <widget class="QLabel" name="framefx_emotion_lbl">
+               <property name="text">
+                <string>Emotion:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QComboBox" name="framefx_emotion_combobox"/>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="framefx_frame_lbl">
+               <property name="text">
+                <string>Frame:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="QLineEdit" name="framefx_frame_lineedit"/>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="framefx_sfx_lbl">
+               <property name="text">
+                <string>SFX:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QLineEdit" name="framefx_sfx_lineedit"/>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="1" column="0">
+         <layout class="QHBoxLayout" name="framefx_listview_layout">
+          <item>
+           <widget class="QListWidget" name="framefx_entry_listview"/>
+          </item>
+          <item>
+           <widget class="QListWidget" name="framefx_timing_listview"/>
+          </item>
+         </layout>
+        </item>
+        <item row="3" column="0">
+         <layout class="QHBoxLayout" name="framefx_timing_layout">
+          <item>
+           <spacer name="framefx_timing_spacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="framefx_remove_timing">
+            <property name="text">
+             <string>Add Timing</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="framefx_add_timing">
+            <property name="text">
+             <string>Remove Timing</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="4" column="0">
+         <widget class="QFrame" name="frame">
+          <property name="frameShape">
+           <enum>QFrame::HLine</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Sunken</enum>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
       <widget class="QWidget" name="shouts">
        <attribute name="title">
@@ -844,6 +951,38 @@ cancer inducing</string>
     <hint type="destinationlabel">
      <x>81</x>
      <y>154</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>framefx_radio_sfx_button</sender>
+   <signal>clicked()</signal>
+   <receiver>framefx_config_combobox</receiver>
+   <slot>hide()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>106</x>
+     <y>245</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>284</x>
+     <y>317</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>framefx_radio_screenshake_button</sender>
+   <signal>clicked()</signal>
+   <receiver>framefx_config_combobox</receiver>
+   <slot>show()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>284</x>
+     <y>245</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>284</x>
+     <y>317</y>
     </hint>
    </hints>
   </connection>
