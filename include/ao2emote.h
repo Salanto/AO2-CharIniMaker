@@ -28,6 +28,7 @@ class AO2Emote {
     void setSoundData(SoundData f_sound);
     void setSFX(QString f_sfx_name);
     void setTicks(int f_ticks);
+    void setLoop(bool f_loop);
 
  private:
   /**

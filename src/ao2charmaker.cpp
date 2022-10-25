@@ -56,6 +56,7 @@ AO2CharMaker::AO2CharMaker(QWidget* parent)
           &AO2CharMaker::on_sfx_name_edited);
   connect(ui->sound_tick_spinbox, QOverload<int>::of(&QSpinBox::valueChanged), this,
           &AO2CharMaker::on_sfx_ticks_changed);
+  connect(ui->sound_loop_checkbox, &QCheckBox::stateChanged, this, &AO2CharMaker::on_sfx_loop_changed);
   ui->sound_input_groupbox->setEnabled(false);
 }
 

@@ -92,6 +92,7 @@ struct Emotions {
 struct SoundData {
   QString sfx = "NO-SFX";
   int ticks = 0;
+  bool loop = false;
 };
 
 enum FrameType{

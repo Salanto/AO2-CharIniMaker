@@ -130,8 +130,12 @@ private:
 
   void on_deskmod_combobox_item_selected(QString f_deskmod_text);
 
+
+  // Audio
   void on_sfx_name_edited(QString f_text);
 
   void on_sfx_ticks_changed(int f_ticks);
+
+  void on_sfx_loop_changed(int f_state);
 };
 #endif  // AO2CHARMAKER_H

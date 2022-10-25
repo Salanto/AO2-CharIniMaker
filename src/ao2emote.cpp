@@ -54,3 +54,8 @@ void AO2Emote::setTicks(int f_ticks)
 {
     m_sound.ticks = f_ticks;
 }
+
+void AO2Emote::setLoop(bool f_loop)
+{
+    m_sound.loop = f_loop;
+}

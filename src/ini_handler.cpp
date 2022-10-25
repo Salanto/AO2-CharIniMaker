@@ -143,6 +143,7 @@ void INIHandler::saveEmotions(const Emotions f_emotions)
       m_char_ini->setValue(QString::number(l_emote_index), l_emote_entry);
       l_emote_index++;
     }
+    m_char_ini->endGroup();
 }
 
 QList<SoundData> INIHandler::loadSounds()
@@ -155,6 +156,7 @@ QList<SoundData> INIHandler::loadSounds()
         SoundData l_sound;
         l_sound.sfx = m_char_ini->value("SoundN/" + QString::number(sound_index), "NO-SFX").toString();
         l_sound.ticks = m_char_ini->value("SoundT/" + QString::number(sound_index), 0).toInt();
+        l_sound.loop = m_char_ini->value("SoundL/" + QString::number(sound_index), 0).toBool();
         l_sounds.append(l_sound);
     }
     return l_sounds;
@@ -166,6 +168,7 @@ void INIHandler::saveSounds(const QList<SoundData> f_sounds)
     for (const SoundData &l_sound_data : f_sounds) {
         m_char_ini->setValue("SoundN/" + QString::number(l_sound_index), l_sound_data.sfx);
         m_char_ini->setValue("SoundT/" + QString::number(l_sound_index), l_sound_data.ticks);
+        m_char_ini->setValue("SoundL/" + QString::number(l_sound_index), int(l_sound_data.loop));
         l_sound_index++;
     }
 }

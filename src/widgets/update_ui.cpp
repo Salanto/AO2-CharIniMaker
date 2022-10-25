@@ -24,6 +24,13 @@ void AO2CharMaker::setSoundRowText(int f_index, bool add_entry)
             QString("%3 = %1 | %2 ticks").arg(l_sound_data.sfx,
                                          QString::number(l_sound_data.ticks),
                                          QString::number(f_index + 1));
+    if (l_sound_data.loop) {
+        l_display_text.append(" | Loop");
+    }
+    else {
+        l_display_text.append(" | No Loop");
+    }
+
     if (add_entry)
         ui->sound_listview->addItem(l_display_text);
     else
@@ -78,6 +85,7 @@ void AO2CharMaker::setSoundEditMenu(int f_index)
   SoundData l_sound_data = m_emotions.at(f_index).soundData();
   ui->sound_sfx_lineedit->setText(l_sound_data.sfx);
   ui->sound_tick_spinbox->setValue(l_sound_data.ticks);
+  ui->sound_loop_checkbox->setChecked(l_sound_data.loop);
 }
 
 void AO2CharMaker::setOptionsTab(CharacterOptions f_options)

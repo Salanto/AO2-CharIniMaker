@@ -174,6 +174,13 @@ void AO2CharMaker::on_sfx_ticks_changed(int f_ticks)
     setSoundRowText(l_currently_selected);
 }
 
+void AO2CharMaker::on_sfx_loop_changed(int f_state)
+{
+    int l_currently_selected = ui->sound_listview->currentRow();
+    m_emotions[l_currently_selected].setLoop(bool(f_state));
+    setSoundRowText(l_currently_selected);
+}
+
 void AO2CharMaker::on_create_folder_pressed() {
   if (ui->name_lineedit->text().isEmpty()) {
     QMessageBox::question(
