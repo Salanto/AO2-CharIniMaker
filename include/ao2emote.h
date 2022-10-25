@@ -1,9 +1,6 @@
 #ifndef AO2_EMOTE_H
 #define AO2_EMOTE_H
 
-#include <QList>
-#include <QString>
-
 #include "ao2_character_data.h"
 
 /**

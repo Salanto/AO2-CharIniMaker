@@ -63,6 +63,16 @@ struct CharacterOptions {
  *
  * @details The emote information is limited using the pound (#) symbol.
  *
+ * #comment The display name in the emotion dropdown.
+ *
+ * #preAnim The filename or relative path of the pre-animation, which plays before the animation
+ *
+ * #Anim The filename or relative path of the animation, which plays after the pre-aniamtion
+ * or instantly if none are set.
+ *
+ * #modifier The emotion modifier, controlling pre-animation, Zoom and Shout behaviour.
+ *
+ * #deskmod Desk modifiers, controlling when it appears or not.
  */
 struct AnimationData {
   QString comment = "normal";
@@ -72,6 +82,19 @@ struct AnimationData {
   int deskmod = 0;
 };
 
+/**
+ * @brief The Emotions struct.
+ *
+ * @details The emotion information is organised by the emotion index.
+ * Due to limitations of the client, read : General terrible design, it needs
+ * to be told how many emotions are present. The rest is a List of all configured emotions.
+ *
+ * #number The amount of emotions contained in this character.
+ *
+ * #emotions A list of all available emotes.
+ * This list will always contain all emote entries and can't skip values,so
+ * number = emotions.size().
+ */
 struct Emotions {
     int number;
     QList<AnimationData> emotions;
