@@ -1,5 +1,6 @@
 #include "ao2charmaker.h"
 #include "ui_ao2charmaker.h"
+#include "helper.h"
 
 #include <QDebug>
 #include <QDialogButtonBox>
@@ -30,26 +31,12 @@ AO2CharMaker::AO2CharMaker(QWidget* parent)
   connect(ui->emote_preanim_lineedit, &QLineEdit::textEdited, this,
           &AO2CharMaker::on_preanim_lineedit_edited);
   connect(ui->emote_preanim_select_button, &QPushButton::pressed, this, [=]{
-      QFileDialog l_dialog(this, "Select animation", "", "");
-      l_dialog.setFileMode(QFileDialog::ExistingFile);
-      connect(&l_dialog, &QFileDialog::fileSelected, this, [this](QString f_filename){
-          QString l_file_name = f_filename.split("/").last().split(".").first();
-          QString l_final_name = l_file_name.replace("(a)", "").replace("(b)","").replace("(c)","");
-          ui->emote_preanim_lineedit->setText(l_final_name);
-      });
-      l_dialog.exec();
+      AOCharMaker::Helper::openFileDialog(this, ui->emote_preanim_lineedit);
   });
   connect(ui->emote_anim_lineedit, &QLineEdit::textEdited, this,
           &AO2CharMaker::on_animation_lineedit_edited);
   connect(ui->emote_anim_select_button, &QPushButton::pressed, this, [=]{
-      QFileDialog l_dialog(this, "Select animation", "", "");
-      l_dialog.setFileMode(QFileDialog::ExistingFile);
-      connect(&l_dialog, &QFileDialog::fileSelected, this, [this](QString f_filename){
-          QString l_file_name = f_filename.split("/").last().split(".").first();
-          QString l_final_name = l_file_name.replace("(a)", "").replace("(b)","").replace("(c)","");
-          ui->emote_anim_lineedit->setText(l_final_name);
-      });
-      l_dialog.exec();
+      AOCharMaker::Helper::openFileDialog(this, ui->emote_anim_lineedit);
   });
   connect(ui->emote_deskmod_combobox, &QComboBox::currentTextChanged, this,
           &AO2CharMaker::on_deskmod_combobox_item_selected);
